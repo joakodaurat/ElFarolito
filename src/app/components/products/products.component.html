@@ -1,0 +1,79 @@
+<!--  <ul>
+  <li *ngFor="let p of products">
+    <ul>nombre: {{p.name}}</ul>
+    <ul>descripcion: {{p.description}}</ul>
+    <ul>precio: {{p.price}}</ul>
+    <button (click)="deleteProduct($event,p)">Eliminar</button>
+    <button (click)="editProduct($event,p)">Editar</button>
+    <div *ngIf="editable && productoaeditar.id == p.id ">
+      <form (ngSubmit)="updateProduct()">
+        <input type="text" name="name" [(ngModel)]="productoaeditar.name">
+        <input type="text" name="description" [(ngModel)]="productoaeditar.description" >
+        <input type="number" name="price" [(ngModel)]="productoaeditar.price">
+
+        <input type="file" accept=".jpg, .png" (change)="uploadFile($event)" />
+         <div>{{ uploadPercent | async }}</div>
+         <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
+         <input #imageuser type="hidden" [value]="downloadURL | async">
+         <br>
+        <button (click)="updateProduct($event,productoaeditar)">Guardar</button>
+      </form>
+      </div>
+  </li>
+</ul>
+-->
+  <!-- menu -->
+  <nav class="navbar navbar-expand-lg navbar-light  fixed-top pull-md-right" style="background-color: white">
+    <a class="navbar-brand" style="margin-left: 25px" href="#">EL FAROLITO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <span class=" "></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto ">
+  </ul>
+  <ul class="navbar-nav ">
+      <li class="nav-item">
+          <a class="nav-link"  (click)="filterseleccion('remera')">Remeras <span class="active sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" (click)="filterseleccion('gorra')" >Gorras</a>
+        </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="filterseleccion('vinilo')" >Vinilos <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"  (click)="todos()">Todos <span class="active sr-only">(current)</span></a>
+      </li>
+    <li class="nav-item" *ngIf="authService.isLoggedIn">
+        <a class="nav-link" href="#" (click)="authService.logout()">Salir <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+  </nav>
+    
+<div id="main">
+    <div class="inner">
+      <div class="columns">
+        <!-- Articulo -->
+        <div *ngFor="let p of products">
+        <div *ngIf="p.tipo == tipo || !filtro"  >
+          <div class="image fit">
+            <div class="grid">
+                <figure class="effect-apollo">
+                  <img src={{p.urlmostrar}} alt="{{p.description}}"/>
+                  <figcaption>
+                    <p style="padding-bottom: 16px" class="precio">{{p.price}}$</p>
+                    <br>
+                    <p class="descripcion">{{p.description}}</p>
+                    <button *ngIf="authService.isLoggedIn" type="button" class="btn btn-secondary" (click)="deleteProduct($event,p)">Eliminar</button>
+                  </figcaption>			
+                </figure>
+              </div>
+            </div>
+        </div>
+      </div>
+       
+      </div>
+    </div>
+  </div>
+

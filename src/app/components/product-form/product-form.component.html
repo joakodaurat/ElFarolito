@@ -1,0 +1,107 @@
+<!--
+<form (ngSubmit)="addproduct()"> 
+  <input type="text" name="name" [(ngModel)]="product.name">
+  <input type="text" name="description" [(ngModel)]="product.description">
+  <input type="number" name="price" [(ngModel)]="product.price">
+  <input type="file" accept=".jpg, .png" (change)="uploadFile($event)" />
+    <div>{{ uploadPercent | async }}</div>
+    <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
+  <input #imageuser type="hidden" [value]="downloadURL | async">
+
+  <button type="submit">
+     Guardar
+  </button>
+</form>
+-->
+
+<!--
+<form (ngSubmit)="addproduct()"> 
+  <input type="text" name="name" [(ngModel)]="product.name">
+  <input type="text" name="description" [(ngModel)]="product.description">
+  <input type="number" name="price" [(ngModel)]="product.price">
+  <input type="file" accept=".jpg, .png" (change)="uploadFile($event)" />
+    <div>{{ uploadPercent | async }}</div>
+    <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
+  <input #imageuser type="hidden" [value]="downloadURL | async">
+
+  <button type="submit">
+     Guardar
+  </button>
+</form>
+-->
+
+<!-- formulario-->
+			<div class="jumbotron jumbotron-fluid" style="padding-bottom: 0px;
+																										margin-bottom: 0px;
+																										background-color: white;">
+					<div class="container">
+
+			<form (ngSubmit)="addproduct()">
+					<div class="form-group row">	
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-body">
+									<!-- carga fotito-->
+									<div class="form-group row">
+										<label for="exampleFormControlFile1" class="col-sm-3 col-form-label">Fotico del diseño</label>
+											<div class="col-sm-9">
+											<input type="file" class="form-control-file" accept=".jpg, .png" (change)="uploadFile($event)"  id="exampleFormControlFile1">
+                      <div>{{ uploadPercent | async }}</div>
+                      <input #imageuser type="hidden" [value]="downloadURL | async">
+                    </div>
+									</div>
+									<hr>
+									<!-- carga descripcion y precio-->
+									<div class="row">
+									<div class="col-sm-8">
+									    <label   class="col-form-label">Descripción</label>
+										<input type="text" class="form-control" name="description" [(ngModel)]="product.description" placeholder="titulo">
+									</div>
+									<div class="col-sm-4">
+									    <label  class="col-form-label">Precio</label>
+										<input type="number" name="price" [(ngModel)]="product.price" class="form-control" id="inputEmail3" placeholder="$">
+									</div>
+								</div>
+								<hr>
+									<!-- seleccionar el tipo-->
+								<div class="row">
+										<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio"  [(ngModel)]="product.tipo" name="inlineRadioOptions" id="inlineRadio1" value="remera">
+												<label class="form-check-label" for="inlineRadio1">Remera</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" [(ngModel)]="product.tipo" name="inlineRadioOptions" id="inlineRadio2" value="vinilo">
+												<label class="form-check-label" for="inlineRadio2">Vinilo</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" [(ngModel)]="product.tipo" name="inlineRadioOptions" id="inlineRadio3" value="gorra">
+												<label class="form-check-label" for="inlineRadio3">Gorra</label>
+											</div>
+
+								</div>
+								</div>
+							</div>
+						</div>
+						<!-- muestra al lado como se ve -->
+						<div class="col-sm-6 " *ngIf="(uploadPercent | async) == 100 && mostrarejemplo" >
+							<div class="card"  style="width: 22rem; color: black; float: none; margin: 0 auto;">
+									<div class="image fit" style="padding-left: 11px;">
+											<div class="grid">
+													<figure class="effect-apollo">
+														<img [src]="downloadURL | async" alt="img22"/>
+														<figcaption>
+															<p style="padding-bottom: 16px" class="precio">{{product.price}}$</p>
+															<br>
+															<p class="descripcion">{{product.description}} </p>
+															
+														</figcaption>			
+													</figure>
+												</div>
+									</div>
+									<button type="submit" class="btn btn-outline-warning">Guardar</button>
+								</div>
+							</div>
+						</div>
+				</form>
+			</div>
+			</div>
