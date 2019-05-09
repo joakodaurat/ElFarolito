@@ -1518,13 +1518,18 @@
 			#footer .inner {
 				padding: 2em;
 			}
-			.form{
-				margin: 4em 0 2em 0;
-			}
+	
 
 				#footer .inner .content,
 				#footer .inner .copyright {
 					padding: 1em;
 				}
+
+		}
+		@media screen and (max-width: 990px) {
+				
+			#formulario {
+				margin: 4em 0 2em 0;
+			}
 
 		}

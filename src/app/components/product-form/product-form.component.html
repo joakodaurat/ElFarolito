@@ -31,14 +31,14 @@
 -->
 
 <!-- formulario-->
-			<div class="jumbotron jumbotron-fluid" style="padding-bottom: 0px;
+			<div id="formulario" class="jumbotron jumbotron-fluid" style="padding-bottom: 0px;
 																										margin-bottom: 0px;
 																										background-color: white;">
 					<div class="container">
 
 			<form (ngSubmit)="addproduct()">
 					<div class="form-group row">	
-						<div class="col-sm-6">
+						<div class="col-sm-12 col-md-12 col-lg-6">
 							<div class="card">
 								<div class="card-body">
 									<!-- carga fotito-->
@@ -83,7 +83,7 @@
 							</div>
 						</div>
 						<!-- muestra al lado como se ve -->
-						<div class="col-sm-6 " *ngIf="(uploadPercent | async) == 100 && mostrarejemplo" >
+						<div class="col-sm-12 col-md-12 col-lg-6" *ngIf="(uploadPercent | async) == 100 && mostrarejemplo" >
 							<div class="card"  style="width: 22rem; color: black; float: none; margin: 0 auto;">
 									<div class="image fit" style="padding-left: 11px;">
 											<div class="grid">
