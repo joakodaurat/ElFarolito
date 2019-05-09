@@ -7,6 +7,6 @@ import { AuthService } from  './service/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
   title = 'El Farolito';
 }

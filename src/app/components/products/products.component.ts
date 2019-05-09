@@ -16,7 +16,7 @@ export class ProductsComponent implements OnInit {
   tipo: string;
   filtro=false;
 
-  constructor(public productsService: ProductsService, private authService: AuthService) { }
+  constructor(public productsService: ProductsService, public authService: AuthService) { }
 
   ngOnInit() {
     this.productsService.getProducts().subscribe(products => {
