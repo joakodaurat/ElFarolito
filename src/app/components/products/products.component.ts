@@ -6,7 +6,7 @@ import { AuthService } from  '../../service/auth.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
 
@@ -15,13 +15,14 @@ export class ProductsComponent implements OnInit {
   editable: boolean = false;
   tipo: string;
   filtro=false;
-
+  productoscargados= false;
   constructor(public productsService: ProductsService, public authService: AuthService) { }
 
   ngOnInit() {
     this.productsService.getProducts().subscribe(products => {
-      //console.log(products);
+    
       this.products = products;
+      this.productoscargados = true;
     });
   }
 
