@@ -118,12 +118,15 @@ figure.effect-apollo figcaption::before {
 
 figure.effect-apollo p {
 	position: absolute;
-	right: 8px;
-	margin-bottom: 0px;
-    margin-top: 0px;
+	right: 14px;
 	padding: 0 1em;
 	border-right: 4px solid #fff;
 	text-align: right;
+	opacity: 0;
+	-webkit-transition: opacity 0.35s;
+	transition: opacity 0.35s;
+}
+figure.effect-apollo .eliminar {
 	opacity: 0;
 	-webkit-transition: opacity 0.35s;
 	transition: opacity 0.35s;
@@ -158,6 +161,12 @@ figure.effect-apollo:hover figcaption::before {
 }
 
 figure.effect-apollo:hover p {
+	opacity: 1;
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+
+figure.effect-apollo:hover .eliminar {
 	opacity: 1;
 	-webkit-transition-delay: 0.1s;
 	transition-delay: 0.1s;

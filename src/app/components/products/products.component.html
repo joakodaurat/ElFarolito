@@ -33,16 +33,16 @@
   </ul>
   <ul class="navbar-nav ">
       <li class="nav-item">
-          <a class="nav-link"  (click)="filterseleccion('remera')">Remeras <span class="active sr-only">(current)</span></a>
+          <a class="nav-link" data-toggle="collapse" data-target="#navbarSupportedContent"  (click)="filterseleccion('remera')">Remeras <span class="active sr-only">(current)</span></a>
         </li>
         <li class="nav-item" >
-          <a class="nav-link" (click)="filterseleccion('gorra')" >Gorras</a>
+          <a class="nav-link" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="filterseleccion('gorra')" >Gorras</a>
         </li>
     <li class="nav-item">
-      <a class="nav-link" (click)="filterseleccion('vinilo')" >Vinilos <span class="sr-only">(current)</span></a>
+      <a class="nav-link" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="filterseleccion('vinilo')" >Vinilos <span class="sr-only">(current)</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link"  (click)="todos()">Todos <span class="active sr-only">(current)</span></a>
+        <a class="nav-link" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="todos()">Todos <span class="active sr-only">(current)</span></a>
       </li>
     <li class="nav-item" *ngIf="authService.isLoggedIn">
         <a class="nav-link" href="#" (click)="authService.logout()">Salir <span class="sr-only">(current)</span></a>
@@ -76,13 +76,11 @@
           </div>
 
 
-
-
 <div *ngIf="productoscargados" id="main">
     <div class="inner">
       <div class="columns">
         <!-- Articulo -->
-        <ng-container     *ngFor="let p of products">
+        <ng-container *ngFor="let p of products">
 
         <div *ngIf="p.tipo == tipo || !filtro"  >
           <div class="image fit">
@@ -93,7 +91,7 @@
                     <p style="padding-bottom: 16px" class="precio">{{p.price}}$</p>
                     <br>
                     <p class="descripcion">{{p.description}}</p>
-                    <button *ngIf="authService.isLoggedIn" type="button" class="btn btn-secondary" (click)="deleteProduct($event,p)">Eliminar</button>
+                    <button *ngIf="authService.isLoggedIn" type="button" class="btn btn-danger eliminar" (click)="deleteProduct($event,p)">Eliminar</button>
                   </figcaption>			
                 </figure>
               </div>
@@ -106,3 +104,12 @@
     </div>
   </div>
 
+  <a style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" data-toggle="collapse" href="#collapseExample">Carrito<i class="far fa-biohazard"></i></a>
+  <div class="collapse" id="collapseExample">
+    <div style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" class="card card-body">
+     <p> Remera rollings stones : 460$</p> 
+     <p> Remera rollings stones : 460$</p> 
+     <p> Remera rollings stones : 460$</p> 
+      <a data-toggle="collapse" href="#collapseExample">Ocultar</i></a>
+    </div>
+  </div>
