@@ -21,11 +21,11 @@ export class AuthService {
     })
    }
 
-   async  login(email:  string, password:  string) {
+   async  login(email: string, password: string) {
 
     try {
         await  this.afAuth.auth.signInWithEmailAndPassword(email, password)
-        this.router.navigate(['inicio']);
+        this.router.navigate(['/inicio']);
     } catch (e) {
         alert("Error!"  +  e.message);
     }

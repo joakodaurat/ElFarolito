@@ -91,6 +91,7 @@
                     <p style="padding-bottom: 16px" class="precio">{{p.price}}$</p>
                     <br>
                     <p class="descripcion">{{p.description}}</p>
+                    <button  type="button" class="btn btn-danger eliminar" (click)="agregarAlCarrito(p)">Comprar</button>
                     <button *ngIf="authService.isLoggedIn" type="button" class="btn btn-danger eliminar" (click)="deleteProduct($event,p)">Eliminar</button>
                   </figcaption>			
                 </figure>
@@ -107,9 +108,11 @@
   <a style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" data-toggle="collapse" href="#collapseExample">Carrito<i class="far fa-biohazard"></i></a>
   <div class="collapse" id="collapseExample">
     <div style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" class="card card-body">
-     <p> Remera rollings stones : 460$</p> 
-     <p> Remera rollings stones : 460$</p> 
-     <p> Remera rollings stones : 460$</p> 
-      <a data-toggle="collapse" href="#collapseExample">Ocultar</i></a>
+     <div  *ngFor="let pc of productosCarrito">
+      <p> {{pc.description}} : {{pc.price}}$ 
+       <button type="button" (click)="sacarDelCarrito(pc)" class="btn btn-outline-danger botonescarrito">-</button>
+       </p> 
+      </div>
+      <a data-toggle="collapse" href="#collapseExample">Ocultar</a>
     </div>
   </div>
