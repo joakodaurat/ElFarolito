@@ -18,6 +18,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import {FormsModule} from '@angular/forms';
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginComponent } from './admin/login/login.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
+import { DetalleComponent } from './components/detalle/detalle.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { LoginComponent } from './admin/login/login.component';
     ProductFormComponent,
     ProductsComponent,
     MenuComponent,
-    LoginComponent
+    LoginComponent,
+    CarritoComponent,
+    DetalleComponent
   ],
   imports: [
     BrowserModule,

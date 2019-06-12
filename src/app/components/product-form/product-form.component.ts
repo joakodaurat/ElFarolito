@@ -41,18 +41,17 @@ export class ProductFormComponent implements OnInit {
     const file = event.target.files[0];
     const id = Math.random().toString(36).substring(2);
     if (this.filepath === undefined) {
-       this.filepath = `imagenes/imagen_${id}`; }
-       else {}
-       const fileRef = this.storage.ref(this.filepath);
-       const task = this.storage.upload(this.filepath, file);
+       this.filepath = `imagenes/imagen_${id}`; }  else {}
+    const fileRef = this.storage.ref(this.filepath);
+    const task = this.storage.upload(this.filepath, file);
       // observe percentage changes
-      this.uploadPercent = task.percentageChanges();
+    this.uploadPercent = task.percentageChanges();
        // get notified when the download URL is available
-      task.snapshotChanges().pipe(
+    task.snapshotChanges().pipe(
         finalize(() => this.downloadURL = fileRef.getDownloadURL() )
-           )    
+           )
     .subscribe();
-          
+
   }
 
 }

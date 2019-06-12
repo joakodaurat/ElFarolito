@@ -1,37 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnDestroy, OnInit } from '@angular/core';
 import { ProductsService } from '../../service/products.service';
 import { Product } from '../../models/product';
 import { AuthService } from '../../service/auth.service';
 import { CarritoService } from '../../service/carrito.service';
-import { ProductoCarrito } from '../../models/productoCarrito';
+import { ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
 })
-export class ProductsComponent implements OnInit {
-  productosCarrito: ProductoCarrito[];
+export class ProductsComponent implements OnInit , OnDestroy {
   products: Product[];
   productoaeditar: Product;
-  editable: boolean = false;
+  editable = false;
   tipo: string;
   filtro = false;
   productoscargados = false;
+  suscribe: any;
   constructor(public productsService: ProductsService,
               public authService: AuthService,
               public carritoService: CarritoService,
+              private route: ActivatedRoute,
              ) {
-               }
+             }
 
-  ngOnInit() {
-
-           this.productsService.getProducts().subscribe(products => {
-                    this.products = products;
-                    this.productoscargados = true;
-                         });
-           this.productosCarrito = this.carritoService.getProductosCarrito();
+  
+    ngOnInit() {
+    this.productsService.getProducts().subscribe((productsSnapshot) => {
+      this.products = [];
+      productsSnapshot.forEach((catData: any) => {
+        this.products.push({
+          id: catData.payload.doc.id,
+          data: catData.payload.doc.data()
+        });
+      })
+    });
   }
+
 
   deleteProduct( product: Product) {
     if (confirm('Seguro chamaco que queres eliminarlo?')) {
@@ -49,27 +56,17 @@ export class ProductsComponent implements OnInit {
     this.productoaeditar = {};
     this.editable = !this.editable;
   }
- 
+  agregarAlCarrito(p){
+    this.carritoService.addProductoCarrito(p);
+
+  }
+
   filterseleccion(data){
-    this.filtro=true;
+    this.filtro = true;
     this.tipo = data;
   }
   todos(){
-    this.filtro=false;
-  }
-  
-  agregarAlCarrito(product: Product) {
-    let productoCarrito: ProductoCarrito = {};
-    productoCarrito.description = product.description;
-    productoCarrito.id = product.id;
-    productoCarrito.price = product.price;
-    this.carritoService.addProductoCarrito(productoCarrito);
-
-  }
-  sacarDelCarrito( productoCarrito: ProductoCarrito) {
-    if (confirm('Sacarlo del carrito?')) {
-    this.carritoService.deleteProductoCarrito(productoCarrito);
-  }
+    this.filtro = false;
   }
 
-}
+ }

@@ -1,0 +1,50 @@
+<!-- carrito -->
+
+<a style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" data-toggle="collapse" href="#collapseExample">Carrito<i class="far fa-biohazard"></i></a>
+<div class="collapse" id="collapseExample">
+  <div style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;overflow-y: scroll;max-height:calc(100% - 60px); width: 300px" class="card card-body">
+     
+      <div class="d-flex justify-content-end"> <a class="float-right" data-toggle="collapse" href="#collapseExample">Ocultar</a></div>
+     <div *ngFor="let pc of productosCarrito" style="padding-left: 10px">
+      <div class="d-flex justify-content-start">{{pc.description | titlecase}} </div>
+      <div class="d-flex justify-content-start"> Prenda: Remera</div>
+      <div class="d-flex justify-content-between"><div>Talle: M - Cantidad: {{pc.cantidad}}</div> <strong>$ {{pc.cantidad}}</strong></div>
+      <div class="d-flex justify-content-between"> 
+          <a data-toggle="collapse" href="#">Editar</a>
+          <a data-toggle="collapse" href="#">Eliminar</a>
+      </div>
+      <hr>
+    </div>
+
+  
+    <!-- <div>
+      <ul class="list-group mb-3">
+          <li  *ngFor="let pc of productosCarrito" class="list-group-item">
+    
+             <div style="border:0" class="d-flex justify-content-between">
+                <span>{{pc.description}}</span>
+                <strong>{{pc.price}}$</strong>
+             </div>
+            <div style="margin-right: 70px">
+              <small style="margin-right: 2px;" class="text-muted">Cantidad: </small>
+                 <button type="button" (click)="restarCantidad(pc)"onclick="this.blur();" class="btn btn-outline-danger botonescarrito">-</button>
+                 <strong  style="padding-right: 11px;">  {{pc.cantidad}}</strong>
+                 <button type="button" (click)="sumarCantidad(pc)" onclick="this.blur();" class="btn btn-outline-danger botonescarrito">+</button>
+              
+            </div>
+            <div class="d-flex flex-row-reverse">
+              <button type="button" (click)="sacarDelCarrito(pc)" onclick="this.blur();" class="btn btn-outline-danger botonescarrito">E</button>
+            </div>
+            </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (pesos)</span>
+            <strong>$20</strong>
+          </li>
+        </ul>
+
+    </div> -->
+    
+    <a class="float-right" data-toggle="collapse" href="#collapseExample">Ocultar</a>
+    
+  </div>
+</div>

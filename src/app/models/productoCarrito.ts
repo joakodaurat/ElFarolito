@@ -3,4 +3,6 @@ export interface ProductoCarrito {
     tipo?: string;
     description?: string;
     price?: number;
+    cantidad?: number;
+    total?: number;
 }

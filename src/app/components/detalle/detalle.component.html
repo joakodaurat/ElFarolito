@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand-lg navbar-light  fixed-top pull-md-right" style="background-color: white">
+    <a class="navbar-brand" style="margin-left: 20px" href="#">EL FAROLITO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto ">
+  </ul>
+  <ul class="navbar-nav">
+      <li class="nav-item">
+          <a class="nav-link"  href="#">Remeras </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link"  href="#" >Gorras</a>
+        </li>
+    <li class="nav-item">
+      <a class="nav-link"  href="#">Vinilos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"  href="#">Todos </a>
+      </li>
+   
+     
+    </ul>
+    
+  </div>
+  </nav> 
+
+  <ng-container *ngFor="let p of products">
+  <div *ngIf="p.id == id_parametro; then esta_el_id"></div>
+
+  <ng-template #esta_el_id>
+  <div class="container" style="padding-top: 80px;">
+     <div class="card">
+      <div class="row no-gutters">
+        <aside class="col-sm-5 border-right">
+    <article class="gallery-wrap"> 
+    <div class="img-big-wrap">
+      <div> <a href="images/items/1.jpg" data-fancybox=""><img src="images/items/1.jpg"></a></div>
+    </div> <!-- slider-product.// -->
+ 
+    </article> <!-- gallery-wrap .end// -->
+        </aside>
+        <aside class="col-sm-7">
+    <article class="p-5">
+      <h3 class="title mb-3">{{p.description}}</h3>
+    
+    <div class="mb-3"> 
+      <var class="price h3 text-warning"> 
+        <span class="currency">$</span><span class="num">1299</span>
+      </var> 
+      <span>/por prenda</span> 
+    </div> <!-- price-detail-wrap .// -->
+    <dl>
+      <dt>Descripcion: Aca va la descripcion</dt>
+    </dl>
+    <hr>
+    <article class="gallery-wrap">
+    <p>Colores disponibles:</p> 
+    <div class="img-small-wrap">
+        <div class="item-gallery"> <img src="images/items/1.jpg"></div>
+        <div class="item-gallery"> <img src="images/items/2.jpg"></div>
+        <div class="item-gallery"> <img src="images/items/3.jpg"></div>
+        <div class="item-gallery"> <img src="images/items/4.jpg"></div>
+     
+      </div> <!-- slider-nav.// -->
+    </article>
+    <hr>
+      <div class="row">
+        
+          <div class="col-sm-4">
+              <div>Color:</div> 
+              <select>
+                  <option> select </option>
+                  <option> roja </option>
+                  <option> verde </option>
+                  <option > azul </option>
+              </select>
+          </div>
+          <div class="col-sm-4">
+              <div>Talle:</div> 
+               <input type="number">
+          </div> <!-- col.// -->
+          <div class="col-sm-4">
+            <div>Cantidad: </div> 
+             <input type="number">
+          </div> 
+        
+    
+      </div> <!-- row.// -->
+      <hr>
+      
+      <a href="#" class="btn  btn-outline-primary"> <i class="fas fa-shopping-cart"></i> Agregar al carrito </a>
+    </article> <!-- card-body.// -->
+        </aside> <!-- col.// -->
+      </div> <!-- row.// -->
+    </div> <!-- card.// -->
+    
+  </div>
+  </ng-template> 
+
+
+</ng-container>

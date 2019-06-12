@@ -31,26 +31,28 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto ">
   </ul>
-  <ul class="navbar-nav ">
+  <ul class="navbar-nav">
       <li class="nav-item">
-          <a class="nav-link" data-toggle="collapse" data-target="#navbarSupportedContent"  (click)="filterseleccion('remera')">Remeras <span class="active sr-only">(current)</span></a>
+          <a class="nav-link" (click)="filterseleccion('remera')" href="#">Remeras </a>
         </li>
         <li class="nav-item" >
-          <a class="nav-link" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="filterseleccion('gorra')" >Gorras</a>
+          <a class="nav-link"  (click)="filterseleccion('gorra')"href="#" >Gorras</a>
         </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="filterseleccion('vinilo')" >Vinilos <span class="sr-only">(current)</span></a>
+      <a class="nav-link" (click)="filterseleccion('vinilo')" href="#">Vinilos</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="todos()">Todos <span class="active sr-only">(current)</span></a>
+        <a class="nav-link"  (click)="todos()">Todos </a>
       </li>
     <li class="nav-item" *ngIf="authService.isLoggedIn">
         <a class="nav-link" href="#" (click)="authService.logout()">Salir <span class="sr-only">(current)</span></a>
       </li>
+     
     </ul>
+    
   </div>
   </nav> 
-
+<!--
         <div *ngIf="!productoscargados && !authService.isLoggedIn" style=" position: absolute; top:50%; left:50%; margin-left:-154px; height:300px;">
           <div class="spinner-grow text-primary" role="status">
               <span class="sr-only">Loading...</span>
@@ -74,12 +76,55 @@
               <span class="sr-only">Loading...</span>
             </div>
           </div>
+-->
+<div *ngIf="products.length > 0" id="main"></div>
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content bg padding-y-sm">
+    <div class="container">
+    <div class="row-sm">
+
+  <ng-container *ngFor="let p of products">
+    <div *ngIf="p.data.tipo == tipo || !filtro"  class="col-md-3 col-sm-6">
+      <figure class="card card-product">
+        <div class="img-wrap"> <img src="{{p.data.urlmostrar}}"></div>
+        <figcaption class="info-wrap">
+           <a [routerLink]="['/detalle', p.id]" class="title">{{p.data.description}}</a>
+          <div class="price-wrap">
+            <span class="price-new">{{p.data.price}}$</span>
+            
+          </div> <!-- price-wrap.// -->
+        </figcaption>
+      </figure> <!-- card // -->
+    </div> <!-- col // -->
+  </ng-container>
+
+   
+    </div> <!-- row.// -->
+    
+    
+    </div><!-- container // -->
+    </section>
+    <!-- ========================= SECTION CONTENT .END// ========================= -->
+<div> <!--cierre main-->
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+          <!--
 <div *ngIf="productoscargados" id="main">
     <div class="inner">
       <div class="columns">
-        <!-- Articulo -->
+        
         <ng-container *ngFor="let p of products">
 
         <div *ngIf="p.tipo == tipo || !filtro"  >
@@ -91,7 +136,7 @@
                     <p style="padding-bottom: 16px" class="precio">{{p.price}}$</p>
                     <br>
                     <p class="descripcion">{{p.description}}</p>
-                    <button  type="button" class="btn btn-danger eliminar" (click)="agregarAlCarrito(p)">Comprar</button>
+                    <button  type="button" class="btn btn-danger eliminar" onclick="this.blur();" (click)="agregarAlCarrito(p)">Comprar</button>
                     <button *ngIf="authService.isLoggedIn" type="button" class="btn btn-danger eliminar" (click)="deleteProduct($event,p)">Eliminar</button>
                   </figcaption>			
                 </figure>
@@ -105,14 +150,4 @@
     </div>
   </div>
 
-  <a style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" data-toggle="collapse" href="#collapseExample">Carrito<i class="far fa-biohazard"></i></a>
-  <div class="collapse" id="collapseExample">
-    <div style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" class="card card-body">
-     <div  *ngFor="let pc of productosCarrito">
-      <p> {{pc.description}} : {{pc.price}}$ 
-       <button type="button" (click)="sacarDelCarrito(pc)" class="btn btn-outline-danger botonescarrito">-</button>
-       </p> 
-      </div>
-      <a data-toggle="collapse" href="#collapseExample">Ocultar</a>
-    </div>
-  </div>
+  <app-carrito></app-carrito> -->

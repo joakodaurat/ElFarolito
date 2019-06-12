@@ -12,26 +12,24 @@ export class ProductsService {
   productsCollections: AngularFirestoreCollection<Product>;
   products: Observable<Product[]>;
   productDoc: AngularFirestoreDocument<Product>;
+  productoDoc: AngularFirestoreDocument<Product>;
+  productos: Product[];
  
 
   constructor(public db: AngularFirestore, public storage: AngularFireStorage) {
-    //el de abajo trae productos pero no su id
-   // this.products = db.collection('products').valueChanges();
-   // utilizamos mejor una angularfirecollection que trae el id de la basedatos llamada 'products'
-   this.productsCollections = db.collection<Product>('products');
-   // luego mapeamos de esa colleccion el id, el snapsshotchanges nos trae info cuando cambia
-   
-   this.products = this.productsCollections.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-      const data = a.payload.doc.data() as Product;
-      data.id = a.payload.doc.id;
-      return data;
-      })));  
+  
    }
 
-   getProducts() {
-     return this.products;
-   }
+ 
+
+    //Obtiene todos los Productos
+  public getProducts() {
+    return this.db.collection('products').snapshotChanges();
+  }
+    //Obtiene un producto
+  public getProduct(documentId: string) {
+    return this.db.collection('products').doc(documentId).snapshotChanges();
+  }
 
    addproduct(product: Product) {
     this.productsCollections.add(product);
@@ -47,5 +45,26 @@ export class ProductsService {
     this.productDoc = this.db.doc(`products/${product.id}`);
     this.productDoc.update(product);
    }
+
+    //Crea un nuevo producto
+  public createCat(data: {nombre: string, url: string}) {
+    return this.firestore.collection('cats').add(data);
+  }
+  //Obtiene un producto
+  public getCat(documentId: string) {
+    return this.firestore.collection('cats').doc(documentId).snapshotChanges();
+  }
+ 
+  //Actualiza un producto
+  public updateCat(documentId: string, data: any) {
+    return this.firestore.collection('cats').doc(documentId).set(data);
+  }
+
+   //Elimina un producto
+  public updateCat(documentId: string, data: any) {
+    return this.firestore.collection('cats').doc(documentId).set(data);
+  }
+
+  
 
 }
